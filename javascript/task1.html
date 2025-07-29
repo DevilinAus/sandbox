@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <script src="task1.js" defer></script>
+</head>
+<body>
+    <h1>Password Generator Tool</h1>
+    <p>
+        <label for="lengthInput">Password Length:</label>
+        <input id="lengthInput" type="number" value="12">
+    </p>
+    <p>
+        <label for="includeNumbersChBox">Require Numbers?:</label>
+        <input id="includeNumbersChBox" type="checkbox">
+    </p>
+    <p>       
+        <label for="includeSpecialChBox">Require Special Characters?:</label>
+        <input id="includeSpecialChBox" type="checkbox">
+    </p>
+
+    <button id="generateBtn">Generate</button>
+    <p> </p>
+    <div id="output"></div>
+</body>
+</html>
