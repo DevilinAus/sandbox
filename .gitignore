@@ -1,0 +1,6 @@
+node_modules/
+.env
+*.log
+dist/
+apikey.js
+plan.md
