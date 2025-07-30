@@ -24,20 +24,23 @@ BONUS (optional):
 NO EXTERNAL UI, just terminal output.
 */
 
-passwordLength = 10;
-specialCharacters = ['$', '%', '@', '^', '*', '!']
+let passwordLength = 10;
+let specialCharacters = ['$', '%', '@', '^', '*', '!']
 
 
-includeNumbers = true
-includeSpecial = true
+let includeNumbers = true
+let includeSpecial = true
 
-password = []
+let password = []
 
 for (let i = 0; i < passwordLength; i++) {
-    generated = (Math.random()*100000000000000)%26;
+    const ALPHABET_CHAR_COUNT = 26;
+    const ASCII_OFFSET = 97;
+    const PASSWORD_ONE_THIRD = 0.33
+    generated = (Math.random()*ALPHABET_CHAR_COUNT);
     value = Math.floor(generated);
     randomCapital = Math.floor(Math.random() * 2);
-    valueStr = String.fromCharCode(97 + value);
+    valueStr = String.fromCharCode(ASCII_OFFSET + value);
 
     if (randomCapital) {
         password.push(valueStr.toUpperCase());
@@ -48,8 +51,8 @@ for (let i = 0; i < passwordLength; i++) {
 
 if (includeNumbers) {
     const numbersMin = 1;
-    const numbersMax = Math.floor(passwordLength * 0.33);
-    const numbersCount = Math.floor(Math.random() * (numbersMax - numbersMin + 1)) + numbersMin;
+    const numbersMax = Math.floor(passwordLength * PASSWORD_ONE_THIRD);
+    const numbersCount = Math.floor(Math.random() * (numbersMax)) + numbersMin;
 
     for (let i = 0; i < numbersCount; i++) {
         let position = Math.floor(Math.random() * passwordLength);
@@ -60,7 +63,7 @@ if (includeNumbers) {
 
 if (includeSpecial) {
     const specialMin = 1;
-    const specialMax = Math.floor(passwordLength * 0.33);
+    const specialMax = Math.floor(passwordLength * PASSWORD_ONE_THIRD);
     const specialCount = Math.floor(Math.random() * (specialMax - specialMin + 1)) + specialMin;
 
     for (let i = 0; i < specialCount; i++) {
@@ -75,5 +78,5 @@ if (includeSpecial) {
 // places and overwrite all the numbers in the password, meaning the numbers True option can result in generated password with no numbers.
 // I'd solve this by checking the final output and generating again if this happened. 
 
-passwordStr = password.join('')
+let passwordStr = password.join('')
 console.log(passwordStr)

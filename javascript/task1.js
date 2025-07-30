@@ -18,11 +18,14 @@ generateBtn.addEventListener("click", function () {
 
 function generatePassword(passwordLength, includeNumbers, includeSpecial) {
     let password = []
+    const ALPHABET_CHAR_COUNT = 26;
+    const ASCII_OFFSET = 97;
+    const PASSWORD_ONE_THIRD = 1/3;
     for (let i = 0; i < passwordLength; i++) {
-        generated = (Math.random()*26);
-        value = Math.floor(generated);
-        randomCapital = Math.floor(Math.random() * 2);
-        valueStr = String.fromCharCode(97 + value);
+        let generated = (Math.random()*ALPHABET_CHAR_COUNT);
+        let value = Math.floor(generated);
+        let randomCapital = Math.floor(Math.random() * 2);
+        let valueStr = String.fromCharCode(ASCII_OFFSET + value);
 
         if (randomCapital) {
             password.push(valueStr.toUpperCase());
@@ -31,37 +34,44 @@ function generatePassword(passwordLength, includeNumbers, includeSpecial) {
         }
     }
 
+    let availablePositions = [...Array(passwordLength).keys()];
+
     if (includeNumbers) {
         const numbersMin = 1;
-        const numbersMax = Math.floor(passwordLength * 0.33);
+        const numbersMax = Math.floor(passwordLength * PASSWORD_ONE_THIRD);
         const numbersCount = Math.floor(Math.random() * (numbersMax - numbersMin + 1)) + numbersMin;
 
         for (let i = 0; i < numbersCount; i++) {
-            let position = Math.floor(Math.random() * passwordLength);
+            let position = pickRandomFrom(availablePositions)
             let whichNumber = Math.floor(Math.random() * passwordLength);
             password[position] = whichNumber;
+            availablePositions = availablePositions.filter(i => i !== position)
+            console.log(availablePositions)
         }
     }
 
     if (includeSpecial) {
         const specialMin = 1;
-        const specialMax = Math.floor(passwordLength * 0.33);
+        const specialMax = Math.floor(passwordLength * PASSWORD_ONE_THIRD);
         const specialCount = Math.floor(Math.random() * (specialMax - specialMin + 1)) + specialMin;
 
         for (let i = 0; i < specialCount; i++) {
-            let position = Math.floor(Math.random() * passwordLength);
+            let position = pickRandomFrom(availablePositions)
             let whichSpecial = specialCharacters[Math.floor(Math.random() * specialCharacters.length)];
             password[position] = whichSpecial;
+            availablePositions = availablePositions.filter(i => i !== position)
+            console.log(availablePositions)
         }
 
     }
 
-    passwordStr = password.join('');
+    let passwordStr = password.join('');
     outputDiv.innerText = passwordStr;
 
 }
-// Note - there's a rare bug were the specials rolls the same amount (or higher) of items as the numbers, and then also pick the same
-// places and overwrite all the numbers in the password, meaning the numbers True option can result in generated password with no numbers.
-// I'd solve this by checking the final output and generating again if this happened. 
 
-
+function pickRandomFrom(availablePositions) {
+    let arrayLength = availablePositions.length;
+    let randomIndex = Math.floor(Math.random() * arrayLength)
+    return availablePositions[randomIndex]
+}
