@@ -4,4 +4,6 @@ node_modules/
 dist/
 apikey.js
 plan.md
-/javascript-pokemon-card-lookup/card_data/
+card_data/
+.DS_Store
+pokemon_response.json
