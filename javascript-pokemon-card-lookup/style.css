@@ -1,0 +1,99 @@
+/* 
+Pallete:
+Yellow  #FFCB05 
+Blue    #3466AF
+White   #FEFFE
+Lavend  #E9EBF8
+Gray    #B4B8C5
+
+*/
+
+
+header {
+    background-color: #E9EBF8;
+    margin: 0px;
+    padding: 10px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    border-bottom: 2px solid #B4B8C5; /* dark gray line */
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+    background-image: url('images/pokeball-offset.png');
+    background-repeat: repeat;
+    background-size: 100px 100px;
+}
+
+h1 {
+    padding: 0px;
+    margin: 0px;
+}
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1000px;
+    width: 600px;
+    background-color: #E9EBF8;
+    border-width: 0px 2px 0px 2px;
+    border-style: solid;
+    border-color: #3466AF;
+    border-radius: 0px 0px 10px 10px;
+    padding-top: 0px;
+    margin-top: 0px;
+
+}
+
+.results {
+    margin: 0px;
+    padding: 0px;
+}
+
+#searchForm {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#leftDiv, #rightDiv {
+    width: 15%;
+    height: 1000px;
+}
+
+#cardArt {
+    width: 70%;
+    height: 1000px;
+}
+
+#cartArt img {
+    width: 300px;
+    max-width:  300px;
+    height: auto;
+    display: block;
+}
+
+#topCounter {
+    width: 600px;
+    background-color: #E9EBF8;
+    border-width: 2px 2px 0px 2px;
+    border-style: solid;
+    border-color: #3466AF;
+    border-radius: 10px 10px 0px 0px;
+    padding-top: 0px;
+    margin-top: 0px;
+    text-align: center;
+}
+
+#topCounter p {
+    margin-bottom: 0px;
+    font-size: larger;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
