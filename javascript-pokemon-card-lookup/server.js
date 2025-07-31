@@ -1,7 +1,12 @@
 require('dotenv').config();
+const fs = require('fs');
 
 const express = require('express');
 const app = express();
+
+const cors = require('cors');
+app.use(cors());
+
 
 const apiKey = process.env.API_KEY;
 
@@ -10,20 +15,28 @@ const apiKey = process.env.API_KEY;
 app.get('/search', async (req, res) => {
     
     let searchTerm = req.query.q;
-    console.log("NEW SEARCH STARTED!")
+    console.log(`NEW SEARCH STARTED! Search term is ${searchTerm}`);
 
-    fetch(`https://api.pokemontcg.io/v2/cards?q=name:${searchTerm}`, {
-        headers: {
-            'X-Api-Key': apiKey
-        }
-    })
+    try {
+        const response = await fetch(`https://api.pokemontcg.io/v2/cards?q=name:${searchTerm}`, {
+            headers: {
+                'X-Api-Key': apiKey
+            }
+        });
+
         // .then(response => console.log(response))
-        .then(response => response.json())
-        .then(data => {
-            console.log(JSON.stringify(data, null, 2));
-        })
+        const data = await response.json();
+        const formattedData = JSON.stringify(data, null, 2);
+        console.log("Returning Data...")
+        fs.writeFileSync('pokemon_response.json', formattedData) // saving the response to file so I can look through it to work with the format.
+        res.send(formattedData);  
 
-})
+    } catch(error) {
+        console.log("error")
+    }
+});
+
+
 
 const PORT = 3000;
 app.listen(PORT, () => {

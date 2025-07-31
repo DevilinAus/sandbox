@@ -4,15 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find A Pokemon Card!</title>
+    <link rel="stylesheet" href="style.css">
     <script src="pokesearch.js" defer></script>
 </head>
 <body>
+    <header>
+        <h1>Pokemon Card Lookup</h1>
+    </header>
     <form id="searchForm">
         <input type="text" id="searchInput" placeholder="Search for a card..." />
         <button type="submit">Search</button>
     </form>
     
-    <div id="results"></div>
+    <div id="results">
+            <div id="topCounter">
+                <p>I am the top</p>
+            </div>
+        <div class="container">
+            
+            <div id="leftDiv">
+                <button id="leftButton">CLICK ME</button>
+            </div>
+            <div id="cardArt">IMAGE HERE</div>
+            <div id="rightDiv">
+                <button id="rightButton">CLICK ME</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
 
