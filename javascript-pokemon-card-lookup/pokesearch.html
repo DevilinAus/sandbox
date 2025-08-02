@@ -12,22 +12,26 @@
         <h1>Pokemon Card Lookup</h1>
     </header>
     <form id="searchForm">
-        <input type="text" id="searchInput" placeholder="Search for a card..." />
+        <input type="text" id="searchInput" placeholder="Search for a card to begin!" />
         <button type="submit">Search</button>
     </form>
     
     <div id="results">
             <div id="topCounter">
-                <p>I am the top</p>
             </div>
-        <div class="container">
+        <div class="container" id="mainContainer">
             
             <div id="leftDiv">
-                <button id="leftButton">CLICK ME</button>
+                <button id="leftButton">Previous</button>
             </div>
-            <div id="cardArt">IMAGE HERE</div>
+            <div id="middleWrapper">
+                <div id="cardArt"></div>
+                <div id="selectButton">
+                    <button id="selectCardButton">Select Card</button>
+                </div>
+            </div>
             <div id="rightDiv">
-                <button id="rightButton">CLICK ME</button>
+                <button id="rightButton">Next</button>
             </div>
         </div>
     </div>

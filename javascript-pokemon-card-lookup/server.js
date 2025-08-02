@@ -16,6 +16,7 @@ app.get('/search', async (req, res) => {
     
     let searchTerm = req.query.q;
     console.log(`NEW SEARCH STARTED! Search term is ${searchTerm}`);
+    // TODO: API returns an error when searching for something with a space in the name. "Venusaur EX returns error 304 needs investigation."
 
     try {
         const response = await fetch(`https://api.pokemontcg.io/v2/cards?q=name:${searchTerm}`, {
