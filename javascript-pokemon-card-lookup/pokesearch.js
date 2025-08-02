@@ -1,8 +1,12 @@
 const searchInput = document.getElementById("searchInput");
 const leftButton = document.getElementById("leftButton");
 const rightButton = document.getElementById("rightButton");
-const topDiv = document.getElementById("topCounter");
-const imageDiv = document.getElementById("cardArt");
+const topDiv = document.getElementById("topCounter")
+const containerDiv = document.getElementById("mainContainer")
+const imageDiv = document.getElementById("cardArt")
+const selectCardButton = document.getElementById("selectCardButton")
+
+
 let imagesArray = [];
 let currentIndex = 0;
 let currentLength = 0;
@@ -47,13 +51,27 @@ function setFirstImage (imagesArray) {
     console.log(imagesArray[0])
     topDiv.innerHTML = `<p>${currentIndex+1} of ${currentLength}</p>`
     imageDiv.innerHTML = `<img src=${imagesArray[0]} width="300" />`
+
+    topDiv.style.display = "flex"
+    containerDiv.style.display = "flex"
+    leftButton.style.display = "inline-block";
+    rightButton.style.display = "inline-block";
+    selectCardButton.style.display = "inline-block";
+
     updateButtonStates()
 };
 
 function updateButtonStates() {
-    // Don't read this with python brain the right hand side returns true of false. 
-    // .disabled is built into HTML, when we're at the limit it sets the button to disabled
-    // automatically undisables itself once they return false. 
-    leftButton.disabled = currentIndex === 0;
-    rightButton.disabled = currentIndex === imagesArray.length - 1;
+    
+    if (currentIndex === 0) {
+        leftButton.style.display = "none";
+    } else {
+        leftButton.style.display = "inline-block";
+    }
+
+    if (currentIndex === imagesArray.length - 1) {
+        rightButton.style.display = "none";
+    } else {
+        rightButton.style.display = "inline-block";
+    }
 }
